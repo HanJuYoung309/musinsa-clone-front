@@ -1,3 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Pretendard(국문 가독), Inter(영문) 조합 */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+:root {
+  --page-max: 1200px; /* 무신사처럼 좌우 여백 좁고 중앙 정렬 */
+}
+
+html, body {
+  @apply bg-white text-black antialiased;
+  font-family: Pretendard, Inter, system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", sans-serif;
+}
+
+.container-mss {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -66,3 +88,11 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+:root { --page-max: 1200px; }
+.container-mss { max-width: var(--page-max); margin-inline: auto; padding-inline: 16px; }
+
+
+/***** 이미지 비율 일관(3:4) *****/
+.aspect-3-4 { position: relative; width: 100%; }
+.aspect-3-4::before { content: ""; display: block; padding-top: calc(4 / 3 * 100%); }
+.aspect-3-4 > img, .aspect-3-4 > picture { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
