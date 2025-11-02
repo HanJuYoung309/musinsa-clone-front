@@ -40,3 +40,11 @@
 .read-the-docs {
   color: #888;
 }
+:root { --page-max: 1200px; }
+.container-mss { max-width: var(--page-max); margin-inline: auto; padding-inline: 16px; }
+
+
+/***** 이미지 비율 일관(3:4) *****/
+.aspect-3-4 { position: relative; width: 100%; }
+.aspect-3-4::before { content: ""; display: block; padding-top: calc(4 / 3 * 100%); }
+.aspect-3-4 > img, .aspect-3-4 > picture { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }

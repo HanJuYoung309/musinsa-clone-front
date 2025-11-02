@@ -3,10 +3,11 @@ import SearchBar from './SearchBar'
 import MegaMenu from './MegaMenu'
 import { CATEGORIES } from "../../constants/categories";
 import { useState } from 'react'
-
+import { useAuth } from "../../state/AuthContext";
 
 export default function Header(){
 const [openKey, setOpenKey] = useState('')
+const { user, logout } = useAuth()
 
 
 return (
@@ -21,6 +22,25 @@ MUSINSA<span className="text-gray-400">·Lite</span>
 <span className="text-gray-300">|</span>
 <Link to="/signup" className="hover:opacity-70">회원가입</Link>
 </nav>
+ <nav className="hidden md:flex items-center gap-3 text-sm">
+{!user ? (
+<>
+<Link to="/login" className="link">로그인</Link>
+<span className="text-gray-300">|</span>
+<Link to="/signup" className="link">회원가입</Link>
+</>
+ ) : (
+<div className="flex items-center gap-3">
+<div className="flex items-center gap-2">
+<div className="grid h-8 w-8 place-items-center rounded-full bg-gray-900 text-white text-xs">
+{user.name?.slice(0,1) || 'U'}
+</div>
+<span className="text-sm text-gray-700">{user.name}</span>
+</div>
+<button className="btn-ghost" onClick={logout}>로그아웃</button>
+</div>
+)}
++ </nav>
 </div>
 
 
